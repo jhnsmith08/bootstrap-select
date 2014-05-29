@@ -55,7 +55,10 @@
             this.multiple = this.$element.prop('multiple');
             this.autofocus = this.$element.prop('autofocus');
             this.$newElement = this.createView();
-            this.$element.after(this.$newElement);
+            if (this.options.host)
+                this.$newElement.appendTo(this.options.host);
+            else
+                this.$element.after(this.$newElement);
             this.$menu = this.$newElement.find('> .dropdown-menu');
             this.$button = this.$newElement.find('> button');
             this.$searchbox = this.$newElement.find('input');
@@ -950,6 +953,7 @@
         maxOptionsText: ['Limit reached ({n} {var} max)', 'Group limit reached ({n} {var} max)', ['items','item']],
         width: false,
         container: false,
+        host: false,
         hideDisabled: false,
         showSubtext: false,
         showIcon: true,
